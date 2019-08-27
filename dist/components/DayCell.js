@@ -211,8 +211,8 @@ var DayCell = function (_Component) {
           rangesCount += 1;
 
           return [].concat(_toConsumableArray(result), [_extends({
-            isStartEdge: isStartEdge,
-            isEndEdge: isEndEdge,
+            isStartEdge: isStartEdge || rangesCount > 1,
+            isEndEdge: isEndEdge || rangesCount > 1,
             isInRange: isInRange
           }, range)]);
         }
