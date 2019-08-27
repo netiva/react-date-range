@@ -226,7 +226,7 @@ var DayCell = function (_Component) {
 
         return _react2.default.createElement('span', {
           key: i,
-          className: (0, _classnames5.default)((_classnames3 = {}, _defineProperty(_classnames3, styles.startEdge, range.isStartEdge), _defineProperty(_classnames3, styles.endEdge, range.isEndEdge), _defineProperty(_classnames3, styles.inRange, range.isInRange), _defineProperty(_classnames3, styles.dayDoubleBooked, isDoubleBooked), _classnames3)),
+          className: (0, _classnames5.default)((_classnames3 = {}, _defineProperty(_classnames3, styles.dayDoubleBooked, isDoubleBooked), _defineProperty(_classnames3, styles.startEdge, range.isStartEdge), _defineProperty(_classnames3, styles.endEdge, range.isEndEdge), _defineProperty(_classnames3, styles.inRange, range.isInRange), _classnames3)),
           style: { color: range.color || _this2.props.color }
         });
       });

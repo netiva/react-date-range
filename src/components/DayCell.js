@@ -159,10 +159,10 @@ class DayCell extends Component {
       <span
         key={i}
         className={classnames({
+          [styles.dayDoubleBooked]: isDoubleBooked,
           [styles.startEdge]: range.isStartEdge,
           [styles.endEdge]: range.isEndEdge,
           [styles.inRange]: range.isInRange,
-          [styles.dayDoubleBooked]: isDoubleBooked,
         })}
         style={{ color: range.color || this.props.color }}
       />
