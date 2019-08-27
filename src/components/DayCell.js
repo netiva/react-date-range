@@ -143,8 +143,8 @@ class DayCell extends Component {
         return [
           ...result,
           {
-            isStartEdge: isStartEdge || rangesCount > 1,
-            isEndEdge: isEndEdge || rangesCount > 1,
+            isStartEdge: isStartEdge,
+            isEndEdge: isEndEdge,
             isInRange,
             ...range,
           },
