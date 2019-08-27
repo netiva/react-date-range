@@ -4,4 +4,4 @@ export { default as DateRangePicker } from './components/DateRangePicker';
 export { default as DefinedRange } from './components/DefinedRange';
 export { defaultInputRanges, defaultStaticRanges, createStaticRanges } from './defaultRanges';
 
-console.log('azra')
+console.log('test')
