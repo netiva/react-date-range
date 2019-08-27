@@ -94,7 +94,7 @@ class DayCell extends Component {
     });
   }
   renderPreviewPlaceholder() {
-    const { preview, day, styles } = this.props;
+    const { preview, day, ranges, styles } = this.props;
     if (!preview) return null;
     const startDate = preview.startDate ? endOfDay(preview.startDate) : null;
     const endDate = preview.endDate ? startOfDay(preview.endDate) : null;
@@ -102,12 +102,17 @@ class DayCell extends Component {
       (!startDate || isAfter(day, startDate)) && (!endDate || isBefore(day, endDate));
     const isStartEdge = !isInRange && isSameDay(day, startDate);
     const isEndEdge = !isInRange && isSameDay(day, endDate);
+    const isDoubleBooked = true;
+
+    console.log(ranges);
+
     return (
       <span
         className={classnames({
           [styles.dayStartPreview]: isStartEdge,
           [styles.dayInPreview]: isInRange,
           [styles.dayEndPreview]: isEndEdge,
+          [styles.dayDoubleBooked]: isDoubleBooked,
         })}
         style={{ color: preview.color }}
       />
@@ -206,6 +211,7 @@ DayCell.propTypes = {
   preview: PropTypes.shape({
     startDate: PropTypes.object,
     endDate: PropTypes.object,
+    color: PropTypes.string,
   }),
   onPreviewChange: PropTypes.func,
   previewColor: PropTypes.string,

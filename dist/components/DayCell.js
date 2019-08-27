@@ -163,6 +163,7 @@ var DayCell = function (_Component) {
       var _props3 = this.props,
           preview = _props3.preview,
           day = _props3.day,
+          ranges = _props3.ranges,
           styles = _props3.styles;
 
       if (!preview) return null;
@@ -171,8 +172,12 @@ var DayCell = function (_Component) {
       var isInRange = (!startDate || (0, _isAfter2.default)(day, startDate)) && (!endDate || (0, _isBefore2.default)(day, endDate));
       var isStartEdge = !isInRange && (0, _isSameDay2.default)(day, startDate);
       var isEndEdge = !isInRange && (0, _isSameDay2.default)(day, endDate);
+      var isDoubleBooked = true;
+
+      console.log(ranges);
+
       return _react2.default.createElement('span', {
-        className: (0, _classnames5.default)((_classnames2 = {}, _defineProperty(_classnames2, styles.dayStartPreview, isStartEdge), _defineProperty(_classnames2, styles.dayInPreview, isInRange), _defineProperty(_classnames2, styles.dayEndPreview, isEndEdge), _classnames2)),
+        className: (0, _classnames5.default)((_classnames2 = {}, _defineProperty(_classnames2, styles.dayStartPreview, isStartEdge), _defineProperty(_classnames2, styles.dayInPreview, isInRange), _defineProperty(_classnames2, styles.dayEndPreview, isEndEdge), _defineProperty(_classnames2, styles.dayDoubleBooked, isDoubleBooked), _classnames2)),
         style: { color: preview.color }
       });
     }
@@ -281,7 +286,8 @@ DayCell.propTypes = {
   ranges: _propTypes2.default.arrayOf(rangeShape),
   preview: _propTypes2.default.shape({
     startDate: _propTypes2.default.object,
-    endDate: _propTypes2.default.object
+    endDate: _propTypes2.default.object,
+    color: _propTypes2.default.string
   }),
   onPreviewChange: _propTypes2.default.func,
   previewColor: _propTypes2.default.string,

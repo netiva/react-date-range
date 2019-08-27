@@ -24,6 +24,7 @@ exports.default = {
   dayEndOfWeek: 'rdrDayEndOfWeek',
   daySelected: 'rdrDaySelected',
   dayDisabled: 'rdrDayDisabled',
+  dayDoubleBooked: 'rdrDayDoubleBooked',
   dayStartOfMonth: 'rdrDayStartOfMonth',
   dayEndOfMonth: 'rdrDayEndOfMonth',
   dayWeekend: 'rdrDayWeekend',
