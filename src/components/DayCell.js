@@ -94,7 +94,7 @@ class DayCell extends Component {
     });
   }
   renderPreviewPlaceholder() {
-    const { preview, day, ranges, styles } = this.props;
+    const { preview, day, styles } = this.props;
     if (!preview) return null;
     const startDate = preview.startDate ? endOfDay(preview.startDate) : null;
     const endDate = preview.endDate ? startOfDay(preview.endDate) : null;
@@ -102,9 +102,6 @@ class DayCell extends Component {
       (!startDate || isAfter(day, startDate)) && (!endDate || isBefore(day, endDate));
     const isStartEdge = !isInRange && isSameDay(day, startDate);
     const isEndEdge = !isInRange && isSameDay(day, endDate);
-    const isDoubleBooked = true;
-
-    console.log(ranges);
 
     return (
       <span
@@ -112,7 +109,6 @@ class DayCell extends Component {
           [styles.dayStartPreview]: isStartEdge,
           [styles.dayInPreview]: isInRange,
           [styles.dayEndPreview]: isEndEdge,
-          [styles.dayDoubleBooked]: isDoubleBooked,
         })}
         style={{ color: preview.color }}
       />
@@ -127,6 +123,8 @@ class DayCell extends Component {
       ) : null;
     }
 
+    let rangesCount = 0;
+
     const inRanges = ranges.reduce((result, range) => {
       let startDate = range.startDate;
       let endDate = range.endDate;
@@ -140,6 +138,8 @@ class DayCell extends Component {
       const isStartEdge = !isInRange && isSameDay(day, startDate);
       const isEndEdge = !isInRange && isSameDay(day, endDate);
       if (isInRange || isStartEdge || isEndEdge) {
+        rangesCount += 1;
+
         return [
           ...result,
           {
@@ -153,6 +153,8 @@ class DayCell extends Component {
       return result;
     }, []);
 
+    const isDoubleBooked = rangesCount > 1;
+
     return inRanges.map((range, i) => (
       <span
         key={i}
@@ -160,6 +162,7 @@ class DayCell extends Component {
           [styles.startEdge]: range.isStartEdge,
           [styles.endEdge]: range.isEndEdge,
           [styles.inRange]: range.isInRange,
+          [styles.dayDoubleBooked]: isDoubleBooked,
         })}
         style={{ color: range.color || this.props.color }}
       />
