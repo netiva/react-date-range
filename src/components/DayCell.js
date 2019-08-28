@@ -158,14 +158,28 @@ class DayCell extends Component {
     if (isDoubleBooked) {
       let startEdgeIndex = inRanges.findIndex(range => range.isStartEdge);
 
-      if (startEdgeIndex > -1) {
-        inRanges = inRanges.map(range => ({
-          ...range,
-          isDoubleBooked: range.isStartEdge,
-        }));
+      const inRangesReversed = [...inRanges];
 
-        inRanges.push(inRanges[startEdgeIndex]);
-        inRanges.splice(startEdgeIndex, 1);
+      inRanges.reverse();
+      let endEdgeIndex = inRangesReversed.findIndex(range => range.isEndEdge);
+
+      if (startEdgeIndex > -1 || endEdgeIndex > -1) {
+        if (startEdgeIndex > -1) {
+          inRanges = inRanges.map(range => ({
+            ...range,
+            isDoubleBooked: range.isEndEdge || range.isStartEdge,
+          }));
+
+          inRanges.push(inRanges[startEdgeIndex]);
+          inRanges.splice(startEdgeIndex, 1);
+        }
+
+        if (endEdgeIndex > -1) {
+          inRanges = inRanges.map(range => ({
+            ...range,
+            isDoubleBooked: range.isEndEdge || range.isStartEdge,
+          }));
+        }
       } else {
         inRanges = inRanges.map(range => ({
           ...range,

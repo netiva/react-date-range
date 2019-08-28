@@ -226,15 +226,32 @@ var DayCell = function (_Component) {
           return range.isStartEdge;
         });
 
-        if (startEdgeIndex > -1) {
-          inRanges = inRanges.map(function (range) {
-            return _extends({}, range, {
-              isDoubleBooked: range.isStartEdge
-            });
-          });
+        var inRangesReversed = [].concat(_toConsumableArray(inRanges));
 
-          inRanges.push(inRanges[startEdgeIndex]);
-          inRanges.splice(startEdgeIndex, 1);
+        inRanges.reverse();
+        var endEdgeIndex = inRangesReversed.findIndex(function (range) {
+          return range.isEndEdge;
+        });
+
+        if (startEdgeIndex > -1 || endEdgeIndex > -1) {
+          if (startEdgeIndex > -1) {
+            inRanges = inRanges.map(function (range) {
+              return _extends({}, range, {
+                isDoubleBooked: range.isEndEdge || range.isStartEdge
+              });
+            });
+
+            inRanges.push(inRanges[startEdgeIndex]);
+            inRanges.splice(startEdgeIndex, 1);
+          }
+
+          if (endEdgeIndex > -1) {
+            inRanges = inRanges.map(function (range) {
+              return _extends({}, range, {
+                isDoubleBooked: range.isEndEdge || range.isStartEdge
+              });
+            });
+          }
         } else {
           inRanges = inRanges.map(function (range) {
             return _extends({}, range, {
