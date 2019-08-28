@@ -20,6 +20,7 @@ export default {
   daySelected: 'rdrDaySelected',
   dayDisabled: 'rdrDayDisabled',
   dayDoubleBooked: 'rdrDayDoubleBooked',
+  dayDoubleBookedWrapper: 'rdrDayDoubleBookedWrapper',
   dayStartOfMonth: 'rdrDayStartOfMonth',
   dayEndOfMonth: 'rdrDayEndOfMonth',
   dayWeekend: 'rdrDayWeekend',
