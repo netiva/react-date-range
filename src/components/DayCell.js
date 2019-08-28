@@ -164,6 +164,7 @@ class DayCell extends Component {
         inRanges = inRanges.map(range => ({
           ...range,
           isDoubleBooked: range.isStartEdge,
+          isEndEdge: endEdgeIndex > -1,
         }));
 
         inRanges.push(inRanges[startEdgeIndex]);
@@ -174,6 +175,7 @@ class DayCell extends Component {
         inRanges = inRanges.map(range => ({
           ...range,
           isDoubleBooked: range.isDoubleBooked || range.isEndEdge,
+          isStartEdge: startEdgeIndex > -1,
         }));
 
         inRanges.push(inRanges[endEdgeIndex]);

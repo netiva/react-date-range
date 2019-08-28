@@ -233,7 +233,8 @@ var DayCell = function (_Component) {
         if (startEdgeIndex > -1) {
           inRanges = inRanges.map(function (range) {
             return _extends({}, range, {
-              isDoubleBooked: range.isStartEdge
+              isDoubleBooked: range.isStartEdge,
+              isEndEdge: endEdgeIndex > -1
             });
           });
 
@@ -244,7 +245,8 @@ var DayCell = function (_Component) {
         if (endEdgeIndex > -1) {
           inRanges = inRanges.map(function (range) {
             return _extends({}, range, {
-              isDoubleBooked: range.isDoubleBooked || range.isEndEdge
+              isDoubleBooked: range.isDoubleBooked || range.isEndEdge,
+              isStartEdge: startEdgeIndex > -1
             });
           });
 
