@@ -221,12 +221,35 @@ var DayCell = function (_Component) {
 
       var isDoubleBooked = rangesCount > 1;
 
+      if (isDoubleBooked) {
+        var startEdgeIndex = inRanges.findIndex(function (range) {
+          return range.isStartEdge;
+        });
+
+        if (startEdgeIndex > -1) {
+          inRanges = inRanges.map(function (range) {
+            return _extends({}, range, {
+              isDoubleBooked: range.isStartEdge
+            });
+          });
+
+          inRanges.push(inRanges[startEdgeIndex]);
+          inRanges.splice(startEdgeIndex, 1);
+        } else {
+          inRanges = inRanges.map(function (range) {
+            return _extends({}, range, {
+              isDoubleBooked: true
+            });
+          });
+        }
+      }
+
       return inRanges.map(function (range, i) {
         var _classnames3;
 
         return _react2.default.createElement('span', {
           key: i,
-          className: (0, _classnames5.default)((_classnames3 = {}, _defineProperty(_classnames3, styles.dayDoubleBooked, isDoubleBooked), _defineProperty(_classnames3, styles.startEdge, range.isStartEdge), _defineProperty(_classnames3, styles.endEdge, range.isEndEdge), _defineProperty(_classnames3, styles.inRange, range.isInRange), _classnames3)),
+          className: (0, _classnames5.default)((_classnames3 = {}, _defineProperty(_classnames3, styles.dayDoubleBooked, range.isDoubleBooked), _defineProperty(_classnames3, styles.startEdge, range.isStartEdge), _defineProperty(_classnames3, styles.endEdge, range.isEndEdge), _defineProperty(_classnames3, styles.inRange, range.isInRange), _classnames3)),
           style: { color: range.color || _this2.props.color }
         });
       });

@@ -125,7 +125,7 @@ class DayCell extends Component {
 
     let rangesCount = 0;
 
-    const inRanges = ranges.reduce((result, range) => {
+    let inRanges = ranges.reduce((result, range) => {
       let startDate = range.startDate;
       let endDate = range.endDate;
       if (startDate && endDate && isBefore(endDate, startDate)) {
@@ -155,11 +155,30 @@ class DayCell extends Component {
 
     const isDoubleBooked = rangesCount > 1;
 
+    if (isDoubleBooked) {
+      let startEdgeIndex = inRanges.findIndex(range => range.isStartEdge);
+
+      if (startEdgeIndex > -1) {
+        inRanges = inRanges.map(range => ({
+          ...range,
+          isDoubleBooked: range.isStartEdge,
+        }));
+
+        inRanges.push(inRanges[startEdgeIndex]);
+        inRanges.splice(startEdgeIndex, 1);
+      } else {
+        inRanges = inRanges.map(range => ({
+          ...range,
+          isDoubleBooked: true,
+        }));
+      }
+    }
+
     return inRanges.map((range, i) => (
       <span
         key={i}
         className={classnames({
-          [styles.dayDoubleBooked]: isDoubleBooked,
+          [styles.dayDoubleBooked]: range.isDoubleBooked,
           [styles.startEdge]: range.isStartEdge,
           [styles.endEdge]: range.isEndEdge,
           [styles.inRange]: range.isInRange,
