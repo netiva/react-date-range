@@ -226,13 +226,6 @@ var DayCell = function (_Component) {
           return range.isStartEdge;
         });
 
-        var inRangesReversed = [].concat(_toConsumableArray(inRanges));
-
-        inRanges.reverse();
-        var endEdgeIndex = inRangesReversed.findIndex(function (range) {
-          return range.isEndEdge;
-        });
-        console.log(endEdgeIndex);
         if (startEdgeIndex > -1) {
           inRanges = inRanges.map(function (range) {
             return _extends({}, range, {
