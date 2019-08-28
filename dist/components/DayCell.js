@@ -232,26 +232,16 @@ var DayCell = function (_Component) {
         var endEdgeIndex = inRangesReversed.findIndex(function (range) {
           return range.isEndEdge;
         });
-
-        if (startEdgeIndex > -1 || endEdgeIndex > -1) {
-          if (startEdgeIndex > -1) {
-            inRanges = inRanges.map(function (range) {
-              return _extends({}, range, {
-                isDoubleBooked: range.isEndEdge || range.isStartEdge
-              });
+        console.log(endEdgeIndex);
+        if (startEdgeIndex > -1) {
+          inRanges = inRanges.map(function (range) {
+            return _extends({}, range, {
+              isDoubleBooked: range.isStartEdge
             });
+          });
 
-            inRanges.push(inRanges[startEdgeIndex]);
-            inRanges.splice(startEdgeIndex, 1);
-          }
-
-          if (endEdgeIndex > -1) {
-            inRanges = inRanges.map(function (range) {
-              return _extends({}, range, {
-                isDoubleBooked: range.isEndEdge || range.isStartEdge
-              });
-            });
-          }
+          inRanges.push(inRanges[startEdgeIndex]);
+          inRanges.splice(startEdgeIndex, 1);
         } else {
           inRanges = inRanges.map(function (range) {
             return _extends({}, range, {
