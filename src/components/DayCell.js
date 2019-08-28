@@ -177,7 +177,7 @@ class DayCell extends Component {
         }));
 
         inRanges.push(inRanges[endEdgeIndex]);
-        inRanges.splice(inRanges.length, 1);
+        inRanges.splice(endEdgeIndex, 1);
       }
 
       if (startEdgeIndex === -1 && endEdgeIndex === -1) {
