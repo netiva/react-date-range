@@ -226,10 +226,7 @@ var DayCell = function (_Component) {
           return range.isStartEdge;
         });
 
-        var reversedInRanges = [].concat(_toConsumableArray(inRanges));
-        reversedInRanges.reverse();
-
-        var endEdgeIndex = reversedInRanges.findIndex(function (range) {
+        var endEdgeIndex = inRanges.findIndex(function (range) {
           return range.isEndEdge;
         });
 
@@ -251,8 +248,8 @@ var DayCell = function (_Component) {
             });
           });
 
-          inRanges.push(reversedInRanges[endEdgeIndex]);
-          inRanges.splice(inRanges.length - 2 - endEdgeIndex, 1);
+          inRanges.push(inRanges[endEdgeIndex]);
+          inRanges.splice(inRanges.length, 1);
         }
 
         if (startEdgeIndex === -1 && endEdgeIndex === -1) {
