@@ -226,6 +226,13 @@ var DayCell = function (_Component) {
           return range.isStartEdge;
         });
 
+        var reversedInRanges = [].concat(_toConsumableArray(inRanges));
+        reversedInRanges.reverse();
+
+        var endEdgeIndex = reversedInRanges.findIndex(function (range) {
+          return range.isEndEdge;
+        });
+
         if (startEdgeIndex > -1) {
           inRanges = inRanges.map(function (range) {
             return _extends({}, range, {
@@ -235,7 +242,20 @@ var DayCell = function (_Component) {
 
           inRanges.push(inRanges[startEdgeIndex]);
           inRanges.splice(startEdgeIndex, 1);
-        } else {
+        }
+
+        if (endEdgeIndex > -1) {
+          inRanges = inRanges.map(function (range) {
+            return _extends({}, range, {
+              isDoubleBooked: range.isDoubleBooked || range.isEndEdge
+            });
+          });
+
+          inRanges.push(reversedInRanges[endEdgeIndex]);
+          inRanges.splice(inRanges.length - 2 - endEdgeIndex, 1);
+        }
+
+        if (startEdgeIndex === -1 && endEdgeIndex === -1) {
           inRanges = inRanges.map(function (range) {
             return _extends({}, range, {
               isDoubleBooked: true
