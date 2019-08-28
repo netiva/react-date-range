@@ -188,6 +188,24 @@ class DayCell extends Component {
           isDoubleBooked: true,
         }));
       }
+      if (startEdgeIndex > -1 && endEdgeIndex > -1) {
+        return (
+          <span className={[styles.dayDoubleBookedWrapper]}>
+            {inRanges.map((range, i) => (
+              <span
+                key={i}
+                className={classnames({
+                  [styles.dayDoubleBooked]: range.isDoubleBooked,
+                  [styles.startEdge]: range.isStartEdge,
+                  [styles.endEdge]: range.isEndEdge,
+                  [styles.inRange]: range.isInRange,
+                })}
+                style={{ color: range.color || this.props.color }}
+              />
+            ))}
+          </span>
+        );
+      }
     }
 
     return inRanges.map((range, i) => (

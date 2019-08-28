@@ -17,9 +17,9 @@ var _propTypes = require('prop-types');
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _classnames4 = require('classnames');
+var _classnames5 = require('classnames');
 
-var _classnames5 = _interopRequireDefault(_classnames4);
+var _classnames6 = _interopRequireDefault(_classnames5);
 
 var _endOfDay = require('date-fns/endOfDay');
 
@@ -153,7 +153,7 @@ var DayCell = function (_Component) {
           styles = _props2.styles;
 
 
-      return (0, _classnames5.default)(styles.day, (_classnames = {}, _defineProperty(_classnames, styles.dayPassive, isPassive), _defineProperty(_classnames, styles.dayDisabled, disabled), _defineProperty(_classnames, styles.dayToday, isToday), _defineProperty(_classnames, styles.dayWeekend, isWeekend), _defineProperty(_classnames, styles.dayStartOfWeek, isStartOfWeek), _defineProperty(_classnames, styles.dayEndOfWeek, isEndOfWeek), _defineProperty(_classnames, styles.dayStartOfMonth, isStartOfMonth), _defineProperty(_classnames, styles.dayEndOfMonth, isEndOfMonth), _defineProperty(_classnames, styles.dayHovered, this.state.hover), _defineProperty(_classnames, styles.dayActive, this.state.active), _classnames));
+      return (0, _classnames6.default)(styles.day, (_classnames = {}, _defineProperty(_classnames, styles.dayPassive, isPassive), _defineProperty(_classnames, styles.dayDisabled, disabled), _defineProperty(_classnames, styles.dayToday, isToday), _defineProperty(_classnames, styles.dayWeekend, isWeekend), _defineProperty(_classnames, styles.dayStartOfWeek, isStartOfWeek), _defineProperty(_classnames, styles.dayEndOfWeek, isEndOfWeek), _defineProperty(_classnames, styles.dayStartOfMonth, isStartOfMonth), _defineProperty(_classnames, styles.dayEndOfMonth, isEndOfMonth), _defineProperty(_classnames, styles.dayHovered, this.state.hover), _defineProperty(_classnames, styles.dayActive, this.state.active), _classnames));
     }
   }, {
     key: 'renderPreviewPlaceholder',
@@ -173,7 +173,7 @@ var DayCell = function (_Component) {
       var isEndEdge = !isInRange && (0, _isSameDay2.default)(day, endDate);
 
       return _react2.default.createElement('span', {
-        className: (0, _classnames5.default)((_classnames2 = {}, _defineProperty(_classnames2, styles.dayStartPreview, isStartEdge), _defineProperty(_classnames2, styles.dayInPreview, isInRange), _defineProperty(_classnames2, styles.dayEndPreview, isEndEdge), _classnames2)),
+        className: (0, _classnames6.default)((_classnames2 = {}, _defineProperty(_classnames2, styles.dayStartPreview, isStartEdge), _defineProperty(_classnames2, styles.dayInPreview, isInRange), _defineProperty(_classnames2, styles.dayEndPreview, isEndEdge), _classnames2)),
         style: { color: preview.color }
       });
     }
@@ -261,14 +261,29 @@ var DayCell = function (_Component) {
             });
           });
         }
+        if (startEdgeIndex > -1 && endEdgeIndex > -1) {
+          return _react2.default.createElement(
+            'span',
+            { className: [styles.dayDoubleBookedWrapper] },
+            inRanges.map(function (range, i) {
+              var _classnames3;
+
+              return _react2.default.createElement('span', {
+                key: i,
+                className: (0, _classnames6.default)((_classnames3 = {}, _defineProperty(_classnames3, styles.dayDoubleBooked, range.isDoubleBooked), _defineProperty(_classnames3, styles.startEdge, range.isStartEdge), _defineProperty(_classnames3, styles.endEdge, range.isEndEdge), _defineProperty(_classnames3, styles.inRange, range.isInRange), _classnames3)),
+                style: { color: range.color || _this2.props.color }
+              });
+            })
+          );
+        }
       }
 
       return inRanges.map(function (range, i) {
-        var _classnames3;
+        var _classnames4;
 
         return _react2.default.createElement('span', {
           key: i,
-          className: (0, _classnames5.default)((_classnames3 = {}, _defineProperty(_classnames3, styles.dayDoubleBooked, range.isDoubleBooked), _defineProperty(_classnames3, styles.startEdge, range.isStartEdge), _defineProperty(_classnames3, styles.endEdge, range.isEndEdge), _defineProperty(_classnames3, styles.inRange, range.isInRange), _classnames3)),
+          className: (0, _classnames6.default)((_classnames4 = {}, _defineProperty(_classnames4, styles.dayDoubleBooked, range.isDoubleBooked), _defineProperty(_classnames4, styles.startEdge, range.isStartEdge), _defineProperty(_classnames4, styles.endEdge, range.isEndEdge), _defineProperty(_classnames4, styles.inRange, range.isInRange), _classnames4)),
           style: { color: range.color || _this2.props.color }
         });
       });
