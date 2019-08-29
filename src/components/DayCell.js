@@ -185,38 +185,17 @@ class DayCell extends Component {
         let rightColor = 'transparent';
         if (isSameDay(inRanges[0].startDate, inRanges[1].startDate)) {
           leftColor = 'transparent';
-          if (
-            isSameDay(inRanges[0].endDate, inRanges[1].endDate) ||
-            getDay(inRanges[0].startDate) === 6
-          ) {
-            rightColor = 'transparent';
-          } else {
-            rightColor = isBefore(inRanges[0].endDate, inRanges[1].endDate)
-              ? inRanges[1].color
-              : inRanges[0].color;
-          }
         } else if (isBefore(inRanges[0].startDate, inRanges[1].startDate)) {
           leftColor = getDay(inRanges[1].startDate) === 0 ? 'transparent' : inRanges[0].color;
-          if (isBefore(inRanges[0].endDate, inRanges[1].endDate)) {
-            rightColor = getDay(inRanges[0].endDate) === 6 ? 'transparent' : inRanges[1].color;
-          } else {
-            rightColor =
-              getDay(inRanges[1].startDate) === 6 ||
-              isSameDay(inRanges[0].endDate, inRanges[1].endDate)
-                ? 'transparent'
-                : inRanges[0].color;
-          }
         } else {
           leftColor = getDay(inRanges[0].startDate) === 0 ? 'transparent' : inRanges[1].color;
-          if (isBefore(inRanges[1].endDate, inRanges[0].endDate)) {
-            rightColor = getDay(inRanges[1].endDate) === 6 ? 'transparent' : inRanges[0].color;
-          } else {
-            rightColor =
-              getDay(inRanges[0].startDate) === 6 ||
-              isSameDay(inRanges[1].endDate, inRanges[0].endDate)
-                ? 'transparent'
-                : inRanges[1].color;
-          }
+        }
+        if (isSameDay(inRanges[0].endDate, inRanges[1].endDate)) {
+          rightColor = 'transparent';
+        } else if (isBefore(inRanges[0].endDate, inRanges[1].endDate)) {
+          rightColor = getDay(inRanges[0].endDate) === 6 ? 'transparent' : inRanges[1].color;
+        } else {
+          rightColor = getDay(inRanges[1].endDate) === 6 ? 'transparent' : inRanges[0].color;
         }
 
         console.log(leftColor, rightColor);
