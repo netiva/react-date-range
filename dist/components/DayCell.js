@@ -260,22 +260,13 @@ var DayCell = function (_Component) {
         if (startEdgeIndex > -1 && endEdgeIndex > -1) {
           var leftColor = 'transparent';
           var rightColor = 'transparent';
-          if ((0, _isSameDay2.default)(ranges[0].startDate, ranges[1].startDate) || (0, _isAfter2.default)(ranges[0].startDate, ranges[1].startDate)) {
-            leftColor = (0, _getDay2.default)(ranges[1].startDate) === 0 || (0, _isSameDay2.default)(ranges[0].startDate, ranges[1].startDate) ? 'transparent' : ranges[0].color;
-
-            if ((0, _isSameDay2.default)(ranges[0].endDate, ranges[1].endDate) || (0, _isAfter2.default)(ranges[0].endDate, ranges[1].endDate)) {
-              rightColor = (0, _getDay2.default)(ranges[1].startDate) === 6 || (0, _isSameDay2.default)(ranges[0].endDate, ranges[1].endDate) ? 'transparent' : ranges[0].color;
+          if ((0, _isSameDay2.default)(ranges[0].startDate, ranges[1].startDate)) {
+            leftColor = 'transparent';
+            if ((0, _isSameDay2.default)(ranges[0].endDate, ranges[1].endDate) || (0, _getDay2.default)(ranges[0].startDate === 6)) {
+              rightColor = 'transparent';
             } else {
-              rightColor = (0, _getDay2.default)(ranges[1].startDate) === 6 ? 'transparent' : ranges[1].color;
+              rightColor = (0, _isBefore2.default)(ranges[0].endDate, ranges[1].endDate) ? ranges[1].color : ranges[0].color;
             }
-          } else {
-            leftColor = (0, _getDay2.default)(ranges[0].startDate) === 0 ? 'transparent' : ranges[1].color;
-          }
-
-          if ((0, _isSameDay2.default)(ranges[1].endDate, ranges[0].endDate) || (0, _isAfter2.default)(ranges[1].endDate, ranges[0].endDate)) {
-            rightColor = (0, _getDay2.default)(ranges[0].startDate) === 6 || (0, _isSameDay2.default)(ranges[1].endDate, ranges[0].endDate) ? 'transparent' : ranges[1].color;
-          } else {
-            rightColor = (0, _getDay2.default)(ranges[0].startDate) === 6 ? 'transparent' : ranges[0].color;
           }
 
           console.log(leftColor, rightColor);
