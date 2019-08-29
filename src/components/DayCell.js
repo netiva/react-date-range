@@ -196,9 +196,7 @@ class DayCell extends Component {
               />
             ))}
             <span className={styles.dayNumber}>
-              <span style={{ color: inRanges.length === 1 ? inRanges[0].fontColor : null }}>
-                {format(this.props.day, 'D')}
-              </span>
+              <span>{format(this.props.day, 'D')}</span>
             </span>
           </span>
         );
@@ -220,6 +218,7 @@ class DayCell extends Component {
   }
   render() {
     const { day, styles, ranges } = this.props;
+    let fontColor = null;
     const rangesCount = ranges.reduce((result, range) => {
       let startDate = range.startDate;
       let endDate = range.endDate;
@@ -233,6 +232,7 @@ class DayCell extends Component {
       const isStartEdge = !isInRange && isSameDay(day, startDate);
       const isEndEdge = !isInRange && isSameDay(day, endDate);
       if (isInRange || isStartEdge || isEndEdge) {
+        fontColor = range.fontColor;
         return result + 1;
       }
       return result;
@@ -255,7 +255,8 @@ class DayCell extends Component {
         {this.renderSelectionPlaceholders()}
         {this.renderPreviewPlaceholder()}
         <span
-          className={classnames(styles.dayNumber, { [styles.dayDoubleBooked]: rangesCount > 1 })}>
+          className={classnames(styles.dayNumber, { [styles.dayDoubleBooked]: rangesCount > 1 })}
+          style={{ color: fontColor }}>
           <span>{format(this.props.day, 'D')}</span>
         </span>
       </button>

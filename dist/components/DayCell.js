@@ -271,7 +271,7 @@ var DayCell = function (_Component) {
               { className: styles.dayNumber },
               _react2.default.createElement(
                 'span',
-                { style: { color: inRanges.length === 1 ? inRanges[0].fontColor : null } },
+                null,
                 (0, _format2.default)(this.props.day, 'D')
               )
             )
@@ -297,6 +297,7 @@ var DayCell = function (_Component) {
           styles = _props5.styles,
           ranges = _props5.ranges;
 
+      var fontColor = null;
       var rangesCount = ranges.reduce(function (result, range) {
         var startDate = range.startDate;
         var endDate = range.endDate;
@@ -311,6 +312,7 @@ var DayCell = function (_Component) {
         var isStartEdge = !isInRange && (0, _isSameDay2.default)(day, startDate);
         var isEndEdge = !isInRange && (0, _isSameDay2.default)(day, endDate);
         if (isInRange || isStartEdge || isEndEdge) {
+          fontColor = range.fontColor;
           return result + 1;
         }
         return result;
@@ -336,7 +338,8 @@ var DayCell = function (_Component) {
         _react2.default.createElement(
           'span',
           {
-            className: (0, _classnames7.default)(styles.dayNumber, _defineProperty({}, styles.dayDoubleBooked, rangesCount > 1)) },
+            className: (0, _classnames7.default)(styles.dayNumber, _defineProperty({}, styles.dayDoubleBooked, rangesCount > 1)),
+            style: { color: fontColor } },
           _react2.default.createElement(
             'span',
             null,
