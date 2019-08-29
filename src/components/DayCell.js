@@ -183,23 +183,36 @@ class DayCell extends Component {
       if (startEdgeIndex > -1 && endEdgeIndex > -1) {
         let leftColor = 'transparent';
         let rightColor = 'transparent';
-        if (isSameDay(inRanges[0].startDate, inRanges[1].startDate)) {
+        const updatedRanges = inRanges.reduce((result, range) => {
+          if (isBefore(range.endDate, range.startDate)) {
+            return [...result, [{ ...range, endDate: range.startDate, startDate: range.endDate }]];
+          }
+          return [...result, range];
+        });
+
+        if (isSameDay(updatedRanges[0].startDate, updatedRanges[1].startDate)) {
           leftColor = 'transparent';
-        } else if (isBefore(inRanges[0].startDate, inRanges[1].startDate)) {
-          leftColor = getDay(inRanges[1].startDate) === 0 ? 'transparent' : inRanges[0].color;
+        } else if (isBefore(updatedRanges[0].startDate, updatedRanges[1].startDate)) {
+          leftColor =
+            getDay(updatedRanges[1].startDate) === 0 ? 'transparent' : updatedRanges[0].color;
         } else {
-          leftColor = getDay(inRanges[0].startDate) === 0 ? 'transparent' : inRanges[1].color;
+          leftColor =
+            getDay(updatedRanges[0].startDate) === 0 ? 'transparent' : updatedRanges[1].color;
         }
-        if (isSameDay(inRanges[0].endDate, inRanges[1].startDate)) {
+        if (isSameDay(updatedRanges[0].endDate, updatedRanges[1].endDate)) {
           console.log(1);
-          console.log(inRanges);
+          console.log(updatedRanges);
           rightColor = 'transparent';
-        } else if (isBefore(inRanges[0].endDate, inRanges[1].startDate)) {
+        } else if (isBefore(updatedRanges[0].endDate, updatedRanges[1].endDate)) {
           rightColor =
-            getDay(inRanges[0].endDate) === 6 ? console.log(2) && 'transparent' : inRanges[1].color;
+            getDay(updatedRanges[0].endDate) === 6
+              ? console.log(2) && 'transparent'
+              : updatedRanges[1].color;
         } else {
           rightColor =
-            getDay(inRanges[1].endDate) === 6 ? console.log(3) && 'transparent' : inRanges[0].color;
+            getDay(updatedRanges[1].endDate) === 6
+              ? console.log(3) && 'transparent'
+              : updatedRanges[0].color;
         }
 
         console.log(leftColor, rightColor);

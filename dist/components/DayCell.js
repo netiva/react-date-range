@@ -260,21 +260,28 @@ var DayCell = function (_Component) {
         if (startEdgeIndex > -1 && endEdgeIndex > -1) {
           var leftColor = 'transparent';
           var rightColor = 'transparent';
-          if ((0, _isSameDay2.default)(inRanges[0].startDate, inRanges[1].startDate)) {
+          var updatedRanges = inRanges.reduce(function (result, range) {
+            if ((0, _isBefore2.default)(range.endDate, range.startDate)) {
+              return [].concat(_toConsumableArray(result), [[_extends({}, range, { endDate: range.startDate, startDate: range.endDate })]]);
+            }
+            return [].concat(_toConsumableArray(result), [range]);
+          });
+
+          if ((0, _isSameDay2.default)(updatedRanges[0].startDate, updatedRanges[1].startDate)) {
             leftColor = 'transparent';
-          } else if ((0, _isBefore2.default)(inRanges[0].startDate, inRanges[1].startDate)) {
-            leftColor = (0, _getDay2.default)(inRanges[1].startDate) === 0 ? 'transparent' : inRanges[0].color;
+          } else if ((0, _isBefore2.default)(updatedRanges[0].startDate, updatedRanges[1].startDate)) {
+            leftColor = (0, _getDay2.default)(updatedRanges[1].startDate) === 0 ? 'transparent' : updatedRanges[0].color;
           } else {
-            leftColor = (0, _getDay2.default)(inRanges[0].startDate) === 0 ? 'transparent' : inRanges[1].color;
+            leftColor = (0, _getDay2.default)(updatedRanges[0].startDate) === 0 ? 'transparent' : updatedRanges[1].color;
           }
-          if ((0, _isSameDay2.default)(inRanges[0].endDate, inRanges[1].startDate)) {
+          if ((0, _isSameDay2.default)(updatedRanges[0].endDate, updatedRanges[1].endDate)) {
             console.log(1);
-            console.log(inRanges);
+            console.log(updatedRanges);
             rightColor = 'transparent';
-          } else if ((0, _isBefore2.default)(inRanges[0].endDate, inRanges[1].startDate)) {
-            rightColor = (0, _getDay2.default)(inRanges[0].endDate) === 6 ? console.log(2) && 'transparent' : inRanges[1].color;
+          } else if ((0, _isBefore2.default)(updatedRanges[0].endDate, updatedRanges[1].endDate)) {
+            rightColor = (0, _getDay2.default)(updatedRanges[0].endDate) === 6 ? console.log(2) && 'transparent' : updatedRanges[1].color;
           } else {
-            rightColor = (0, _getDay2.default)(inRanges[1].endDate) === 6 ? console.log(3) && 'transparent' : inRanges[0].color;
+            rightColor = (0, _getDay2.default)(updatedRanges[1].endDate) === 6 ? console.log(3) && 'transparent' : updatedRanges[0].color;
           }
 
           console.log(leftColor, rightColor);
