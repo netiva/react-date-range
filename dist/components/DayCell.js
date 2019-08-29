@@ -283,6 +283,8 @@ var DayCell = function (_Component) {
             }
           }
 
+          console.log(leftColor, rightColor);
+
           return _react2.default.createElement(
             'span',
             {

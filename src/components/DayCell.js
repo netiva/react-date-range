@@ -219,6 +219,8 @@ class DayCell extends Component {
           }
         }
 
+        console.log(leftColor, rightColor);
+
         return (
           <span
             className={[styles.dayDoubleBookedWrapper]}
