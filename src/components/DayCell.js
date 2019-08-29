@@ -186,7 +186,7 @@ class DayCell extends Component {
         const updatedRanges = inRanges.reduce((result, range) => {
           console.log(range);
           if (isBefore(range.endDate, range.startDate)) {
-            return [...result, [{ ...range, endDate: range.startDate, startDate: range.endDate }]];
+            return [...result, { ...range, endDate: range.startDate, startDate: range.endDate }];
           }
           return [...result, range];
         });
