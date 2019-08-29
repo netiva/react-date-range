@@ -68,8 +68,7 @@ var DayCell = function (_Component) {
 
     _this.state = {
       hover: false,
-      active: false,
-      isDoubleBooked: false
+      active: false
     };
     _this.getClassNames = _this.getClassNames.bind(_this);
     _this.handleMouseEvent = _this.handleMouseEvent.bind(_this);
@@ -261,7 +260,6 @@ var DayCell = function (_Component) {
               isDoubleBooked: true
             });
           });
-          this.setState({ isDoubleBooked: true });
         }
         if (startEdgeIndex > -1 && endEdgeIndex > -1) {
           return _react2.default.createElement(
@@ -303,7 +301,6 @@ var DayCell = function (_Component) {
     key: 'render',
     value: function render() {
       var styles = this.props.styles;
-      var isDoubleBooked = this.state.isDoubleBooked;
 
       return _react2.default.createElement(
         'button',
@@ -323,7 +320,7 @@ var DayCell = function (_Component) {
           style: { color: this.props.color } }),
         this.renderSelectionPlaceholders(),
         this.renderPreviewPlaceholder(),
-        !isDoubleBooked && _react2.default.createElement(
+        _react2.default.createElement(
           'span',
           { className: styles.dayNumber },
           _react2.default.createElement(
