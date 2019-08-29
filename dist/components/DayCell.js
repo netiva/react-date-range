@@ -267,11 +267,11 @@ var DayCell = function (_Component) {
           } else {
             leftColor = (0, _getDay2.default)(inRanges[0].startDate) === 0 ? 'transparent' : inRanges[1].color;
           }
-          if ((0, _isSameDay2.default)(inRanges[0].endDate, inRanges[1].endDate)) {
+          if ((0, _isSameDay2.default)(inRanges[0].endDate, inRanges[1].startDate)) {
             console.log(1);
             console.log(inRanges);
             rightColor = 'transparent';
-          } else if ((0, _isBefore2.default)(inRanges[0].endDate, inRanges[1].endDate)) {
+          } else if ((0, _isBefore2.default)(inRanges[0].endDate, inRanges[1].startDate)) {
             rightColor = (0, _getDay2.default)(inRanges[0].endDate) === 6 ? console.log(2) && 'transparent' : inRanges[1].color;
           } else {
             rightColor = (0, _getDay2.default)(inRanges[1].endDate) === 6 ? console.log(3) && 'transparent' : inRanges[0].color;
