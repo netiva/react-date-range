@@ -200,14 +200,22 @@ class DayCell extends Component {
           if (isBefore(inRanges[0].endDate, inRanges[1].endDate)) {
             rightColor = getDay(inRanges[1].startDate) === 6 ? 'transparent' : inRanges[1].color;
           } else {
-            rightColor = getDay(inRanges[1].startDate) === 6 ? 'transparent' : inRanges[0].color;
+            rightColor =
+              getDay(inRanges[1].startDate) === 6 ||
+              isSameDay(inRanges[0].endDate, inRanges[1].endDate)
+                ? 'transparent'
+                : inRanges[0].color;
           }
         } else {
           leftColor = getDay(inRanges[0].startDate) === 0 ? 'transparent' : inRanges[1].color;
           if (isBefore(inRanges[1].endDate, inRanges[0].endDate)) {
             rightColor = getDay(inRanges[0].startDate) === 6 ? 'transparent' : inRanges[0].color;
           } else {
-            rightColor = getDay(inRanges[0].startDate) === 6 ? 'transparent' : inRanges[1].color;
+            rightColor =
+              getDay(inRanges[0].startDate) === 6 ||
+              isSameDay(inRanges[1].endDate, inRanges[0].endDate)
+                ? 'transparent'
+                : inRanges[1].color;
           }
         }
 
