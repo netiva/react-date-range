@@ -192,6 +192,7 @@ class DayCell extends Component {
         }
         if (isSameDay(inRanges[0].endDate, inRanges[1].endDate)) {
           console.log(1);
+          console.log(inRanges);
           rightColor = 'transparent';
         } else if (isBefore(inRanges[0].endDate, inRanges[1].endDate)) {
           rightColor =

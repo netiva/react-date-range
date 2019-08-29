@@ -269,6 +269,7 @@ var DayCell = function (_Component) {
           }
           if ((0, _isSameDay2.default)(inRanges[0].endDate, inRanges[1].endDate)) {
             console.log(1);
+            console.log(inRanges);
             rightColor = 'transparent';
           } else if ((0, _isBefore2.default)(inRanges[0].endDate, inRanges[1].endDate)) {
             rightColor = (0, _getDay2.default)(inRanges[0].endDate) === 6 ? console.log(2) && 'transparent' : inRanges[1].color;
