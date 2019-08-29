@@ -234,8 +234,8 @@ var Calendar = function (_PureComponent) {
       }
     }
   }, {
-    key: 'componentWillReceiveProps',
-    value: function componentWillReceiveProps(nextProps) {
+    key: 'UNSAFE_componentWillReceiveProps',
+    value: function UNSAFE_componentWillReceiveProps(nextProps) {
       var propMapper = {
         dateRange: 'ranges',
         date: 'date'

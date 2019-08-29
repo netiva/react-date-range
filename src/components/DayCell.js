@@ -11,6 +11,7 @@ class DayCell extends Component {
     this.state = {
       hover: false,
       active: false,
+      isDoubleBooked: false,
     };
     this.getClassNames = this.getClassNames.bind(this);
     this.handleMouseEvent = this.handleMouseEvent.bind(this);
@@ -187,6 +188,7 @@ class DayCell extends Component {
           ...range,
           isDoubleBooked: true,
         }));
+        this.setState({ isDoubleBooked: true });
       }
       if (startEdgeIndex > -1 && endEdgeIndex > -1) {
         return (
@@ -203,6 +205,9 @@ class DayCell extends Component {
                 style={{ color: range.color || this.props.color }}
               />
             ))}
+            <span className={styles.dayNumber}>
+              <span>{format(this.props.day, 'D')}</span>
+            </span>
           </span>
         );
       }
@@ -223,6 +228,7 @@ class DayCell extends Component {
   }
   render() {
     const { styles } = this.props;
+    const { isDoubleBooked } = this.state;
     return (
       <button
         type="button"
@@ -240,9 +246,11 @@ class DayCell extends Component {
         style={{ color: this.props.color }}>
         {this.renderSelectionPlaceholders()}
         {this.renderPreviewPlaceholder()}
-        <span className={styles.dayNumber}>
-          <span>{format(this.props.day, 'D')}</span>
-        </span>
+        {!isDoubleBooked && (
+          <span className={styles.dayNumber}>
+            <span>{format(this.props.day, 'D')}</span>
+          </span>
+        )}
       </button>
     );
   }

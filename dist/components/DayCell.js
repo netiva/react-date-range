@@ -68,7 +68,8 @@ var DayCell = function (_Component) {
 
     _this.state = {
       hover: false,
-      active: false
+      active: false,
+      isDoubleBooked: false
     };
     _this.getClassNames = _this.getClassNames.bind(_this);
     _this.handleMouseEvent = _this.handleMouseEvent.bind(_this);
@@ -260,6 +261,7 @@ var DayCell = function (_Component) {
               isDoubleBooked: true
             });
           });
+          this.setState({ isDoubleBooked: true });
         }
         if (startEdgeIndex > -1 && endEdgeIndex > -1) {
           return _react2.default.createElement(
@@ -273,7 +275,16 @@ var DayCell = function (_Component) {
                 className: (0, _classnames6.default)((_classnames3 = {}, _defineProperty(_classnames3, styles.dayDoubleBooked, range.isDoubleBooked), _defineProperty(_classnames3, styles.startEdge, range.isStartEdge), _defineProperty(_classnames3, styles.endEdge, range.isEndEdge), _defineProperty(_classnames3, styles.inRange, range.isInRange), _classnames3)),
                 style: { color: range.color || _this2.props.color }
               });
-            })
+            }),
+            _react2.default.createElement(
+              'span',
+              { className: styles.dayNumber },
+              _react2.default.createElement(
+                'span',
+                null,
+                (0, _format2.default)(this.props.day, 'D')
+              )
+            )
           );
         }
       }
@@ -292,6 +303,7 @@ var DayCell = function (_Component) {
     key: 'render',
     value: function render() {
       var styles = this.props.styles;
+      var isDoubleBooked = this.state.isDoubleBooked;
 
       return _react2.default.createElement(
         'button',
@@ -311,7 +323,7 @@ var DayCell = function (_Component) {
           style: { color: this.props.color } }),
         this.renderSelectionPlaceholders(),
         this.renderPreviewPlaceholder(),
-        _react2.default.createElement(
+        !isDoubleBooked && _react2.default.createElement(
           'span',
           { className: styles.dayNumber },
           _react2.default.createElement(
