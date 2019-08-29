@@ -206,7 +206,11 @@ class DayCell extends Component {
         console.log(leftColor, rightColor);
 
         return (
-          <span className={[styles.dayDoubleBookedWrapper]}>
+          <span
+            className={[styles.dayDoubleBookedWrapper]}
+            style={{
+              background: `linear-gradient(to right, ${leftColor} 0%,${leftColor} 50%,${leftColor} 51%,${rightColor} 51%, 51%,${rightColor} 51%,${rightColor} 51%,${rightColor} 100%)`,
+            }}>
             {inRanges.map((range, i) => (
               <span
                 key={i}

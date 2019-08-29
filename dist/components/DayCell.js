@@ -279,7 +279,11 @@ var DayCell = function (_Component) {
 
           return _react2.default.createElement(
             'span',
-            { className: [styles.dayDoubleBookedWrapper] },
+            {
+              className: [styles.dayDoubleBookedWrapper],
+              style: {
+                background: 'linear-gradient(to right, ' + leftColor + ' 0%,' + leftColor + ' 50%,' + leftColor + ' 51%,' + rightColor + ' 51%, 51%,' + rightColor + ' 51%,' + rightColor + ' 51%,' + rightColor + ' 100%)'
+              } },
             inRanges.map(function (range, i) {
               var _classnames3;
 
