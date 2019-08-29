@@ -21,6 +21,10 @@ var _classnames6 = require('classnames');
 
 var _classnames7 = _interopRequireDefault(_classnames6);
 
+var _getDay = require('date-fns/getDay');
+
+var _getDay2 = _interopRequireDefault(_getDay);
+
 var _endOfDay = require('date-fns/endOfDay');
 
 var _endOfDay2 = _interopRequireDefault(_endOfDay);
@@ -254,6 +258,28 @@ var DayCell = function (_Component) {
           });
         }
         if (startEdgeIndex > -1 && endEdgeIndex > -1) {
+          var leftColor = 'transparent';
+          var rightColor = 'transparent';
+          if ((0, _isSameDay2.default)(ranges[0].startDate, ranges[1].startDate) || (0, _isAfter2.default)(ranges[0].startDate, ranges[1].startDate)) {
+            leftColor = (0, _getDay2.default)(ranges[1].startDate) === 0 || (0, _isSameDay2.default)(ranges[0].startDate, ranges[1].startDate) ? 'transparent' : ranges[0].color;
+
+            if ((0, _isSameDay2.default)(ranges[0].endDate, ranges[1].endDate) || (0, _isAfter2.default)(ranges[0].endDate, ranges[1].endDate)) {
+              rightColor = (0, _getDay2.default)(ranges[1].startDate) === 6 || (0, _isSameDay2.default)(ranges[0].endDate, ranges[1].endDate) ? 'transparent' : ranges[0].color;
+            } else {
+              rightColor = (0, _getDay2.default)(ranges[1].startDate) === 6 ? 'transparent' : ranges[1].color;
+            }
+          } else {
+            leftColor = (0, _getDay2.default)(ranges[0].startDate) === 0 ? 'transparent' : ranges[1].color;
+          }
+
+          if ((0, _isSameDay2.default)(ranges[1].endDate, ranges[0].endDate) || (0, _isAfter2.default)(ranges[1].endDate, ranges[0].endDate)) {
+            rightColor = (0, _getDay2.default)(ranges[0].startDate) === 6 || (0, _isSameDay2.default)(ranges[1].endDate, ranges[0].endDate) ? 'transparent' : ranges[1].color;
+          } else {
+            rightColor = (0, _getDay2.default)(ranges[0].startDate) === 6 ? 'transparent' : ranges[0].color;
+          }
+
+          console.log(leftColor, rightColor);
+
           return _react2.default.createElement(
             'span',
             { className: [styles.dayDoubleBookedWrapper] },

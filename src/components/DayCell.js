@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { startOfDay, format, isSameDay, isAfter, isBefore, endOfDay } from 'date-fns';
+import { startOfDay, format, isSameDay, isAfter, isBefore, endOfDay, getDay } from 'date-fns';
 
 class DayCell extends Component {
   constructor(props, context) {
@@ -181,6 +181,46 @@ class DayCell extends Component {
         }));
       }
       if (startEdgeIndex > -1 && endEdgeIndex > -1) {
+        let leftColor = 'transparent';
+        let rightColor = 'transparent';
+        if (
+          isSameDay(ranges[0].startDate, ranges[1].startDate) ||
+          isAfter(ranges[0].startDate, ranges[1].startDate)
+        ) {
+          leftColor =
+            getDay(ranges[1].startDate) === 0 || isSameDay(ranges[0].startDate, ranges[1].startDate)
+              ? 'transparent'
+              : ranges[0].color;
+
+          if (
+            isSameDay(ranges[0].endDate, ranges[1].endDate) ||
+            isAfter(ranges[0].endDate, ranges[1].endDate)
+          ) {
+            rightColor =
+              getDay(ranges[1].startDate) === 6 || isSameDay(ranges[0].endDate, ranges[1].endDate)
+                ? 'transparent'
+                : ranges[0].color;
+          } else {
+            rightColor = getDay(ranges[1].startDate) === 6 ? 'transparent' : ranges[1].color;
+          }
+        } else {
+          leftColor = getDay(ranges[0].startDate) === 0 ? 'transparent' : ranges[1].color;
+        }
+
+        if (
+          isSameDay(ranges[1].endDate, ranges[0].endDate) ||
+          isAfter(ranges[1].endDate, ranges[0].endDate)
+        ) {
+          rightColor =
+            getDay(ranges[0].startDate) === 6 || isSameDay(ranges[1].endDate, ranges[0].endDate)
+              ? 'transparent'
+              : ranges[1].color;
+        } else {
+          rightColor = getDay(ranges[0].startDate) === 6 ? 'transparent' : ranges[0].color;
+        }
+
+        console.log(leftColor, rightColor);
+
         return (
           <span className={[styles.dayDoubleBookedWrapper]}>
             {inRanges.map((range, i) => (
