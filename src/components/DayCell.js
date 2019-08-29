@@ -212,12 +212,11 @@ class DayCell extends Component {
               ? console.log(2) && 'transparent'
               : updatedRanges[1].color;
         } else {
-          rightColor =
-            getDay(updatedRanges[1].endDate) === 6
-              ? console.log(3) && 'transparent'
-              : updatedRanges[0].color;
+          // rightColor =
+          //   getDay(updatedRanges[1].endDate) === 6
+          //     ? console.log(3) && 'transparent'
+          //     : updatedRanges[0].color;
         }
-
         return (
           <span
             className={[styles.dayDoubleBookedWrapper]}

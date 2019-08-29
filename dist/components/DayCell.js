@@ -280,9 +280,11 @@ var DayCell = function (_Component) {
           } else if ((0, _isBefore2.default)(updatedRanges[0].endDate, updatedRanges[1].endDate)) {
             rightColor = (0, _getDay2.default)(updatedRanges[0].endDate) === 6 ? console.log(2) && 'transparent' : updatedRanges[1].color;
           } else {
-            rightColor = (0, _getDay2.default)(updatedRanges[1].endDate) === 6 ? console.log(3) && 'transparent' : updatedRanges[0].color;
+            // rightColor =
+            //   getDay(updatedRanges[1].endDate) === 6
+            //     ? console.log(3) && 'transparent'
+            //     : updatedRanges[0].color;
           }
-
           return _react2.default.createElement(
             'span',
             {
