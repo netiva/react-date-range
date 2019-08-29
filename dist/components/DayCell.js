@@ -260,12 +260,12 @@ var DayCell = function (_Component) {
         if (startEdgeIndex > -1 && endEdgeIndex > -1) {
           var leftColor = 'transparent';
           var rightColor = 'transparent';
-          if ((0, _isSameDay2.default)(ranges[0].startDate, ranges[1].startDate)) {
+          if ((0, _isSameDay2.default)(inRanges[0].startDate, inRanges[1].startDate)) {
             leftColor = 'transparent';
-            if ((0, _isSameDay2.default)(ranges[0].endDate, ranges[1].endDate) || (0, _getDay2.default)(ranges[0].startDate === 6)) {
+            if ((0, _isSameDay2.default)(inRanges[0].endDate, inRanges[1].endDate) || (0, _getDay2.default)(inRanges[0].startDate === 6)) {
               rightColor = 'transparent';
             } else {
-              rightColor = (0, _isBefore2.default)(ranges[0].endDate, ranges[1].endDate) ? ranges[1].color : ranges[0].color;
+              rightColor = (0, _isBefore2.default)(inRanges[0].endDate, inRanges[1].endDate) ? inRanges[1].color : inRanges[0].color;
             }
           }
 
