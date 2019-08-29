@@ -203,7 +203,9 @@ class DayCell extends Component {
                 style={{ color: range.color || this.props.color }}
               />
             ))}
-            <span className={styles.dayNumber}>
+            <span
+              className={styles.dayNumber}
+              style={{ color: inRanges.length === 1 ? inRanges[0].fontColor : null }}>
               <span>{format(this.props.day, 'D')}</span>
             </span>
           </span>

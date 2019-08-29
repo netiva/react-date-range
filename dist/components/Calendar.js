@@ -571,6 +571,7 @@ var Calendar = function (_PureComponent) {
           maxDate = _props7.maxDate,
           minDate = _props7.minDate,
           rangeColors = _props7.rangeColors,
+          rangeFontColors = _props7.rangeFontColors,
           color = _props7.color;
       var _state = this.state,
           scrollArea = _state.scrollArea,
@@ -581,7 +582,8 @@ var Calendar = function (_PureComponent) {
 
       var ranges = this.props.ranges.map(function (range, i) {
         return _extends({}, range, {
-          color: range.color || rangeColors[i] || color
+          color: range.color || rangeColors[i] || color,
+          fontColor: rangeFontColors[i]
         });
       });
       return _react2.default.createElement(
@@ -747,6 +749,7 @@ Calendar.propTypes = {
   direction: _propTypes2.default.oneOf(['vertical', 'horizontal']),
   navigatorRenderer: _propTypes2.default.func,
   rangeColors: _propTypes2.default.arrayOf(_propTypes2.default.string),
+  rangeFontColors: _propTypes2.default.arrayOf(_propTypes2.default.string),
   dragSelectionEnabled: _propTypes2.default.bool
 };
 

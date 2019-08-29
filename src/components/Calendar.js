@@ -355,6 +355,7 @@ class Calendar extends PureComponent {
       maxDate,
       minDate,
       rangeColors,
+      rangeFontColors,
       color,
     } = this.props;
     const { scrollArea, focusedDate } = this.state;
@@ -364,6 +365,7 @@ class Calendar extends PureComponent {
     const ranges = this.props.ranges.map((range, i) => ({
       ...range,
       color: range.color || rangeColors[i] || color,
+      fontColor: rangeFontColors[i],
     }));
     return (
       <div
@@ -533,6 +535,7 @@ Calendar.propTypes = {
   direction: PropTypes.oneOf(['vertical', 'horizontal']),
   navigatorRenderer: PropTypes.func,
   rangeColors: PropTypes.arrayOf(PropTypes.string),
+  rangeFontColors: PropTypes.arrayOf(PropTypes.string),
   dragSelectionEnabled: PropTypes.bool,
 };
 

@@ -276,7 +276,9 @@ var DayCell = function (_Component) {
             }),
             _react2.default.createElement(
               'span',
-              { className: styles.dayNumber },
+              {
+                className: styles.dayNumber,
+                style: { color: inRanges.length === 1 ? inRanges[0].fontColor : null } },
               _react2.default.createElement(
                 'span',
                 null,
