@@ -191,11 +191,14 @@ class DayCell extends Component {
           leftColor = getDay(inRanges[0].startDate) === 0 ? 'transparent' : inRanges[1].color;
         }
         if (isSameDay(inRanges[0].endDate, inRanges[1].endDate)) {
+          console.log(1);
           rightColor = 'transparent';
         } else if (isBefore(inRanges[0].endDate, inRanges[1].endDate)) {
-          rightColor = getDay(inRanges[0].endDate) === 6 ? 'transparent' : inRanges[1].color;
+          rightColor =
+            getDay(inRanges[0].endDate) === 6 ? console.log(2) && 'transparent' : inRanges[1].color;
         } else {
-          rightColor = getDay(inRanges[1].endDate) === 6 ? 'transparent' : inRanges[0].color;
+          rightColor =
+            getDay(inRanges[1].endDate) === 6 ? console.log(3) && 'transparent' : inRanges[0].color;
         }
 
         console.log(leftColor, rightColor);
@@ -205,6 +208,7 @@ class DayCell extends Component {
             className={[styles.dayDoubleBookedWrapper]}
             style={{
               background: `linear-gradient(to right, ${leftColor} 0%,${leftColor} 50%,${leftColor} 51%,${rightColor} 51%, 51%,${rightColor} 51%,${rightColor} 51%,${rightColor} 100%)`,
+              filter: `progid:DXImageTransform.Microsoft.gradient( startColorstr=${leftColor}, endColorstr=${leftColor},GradientType=1 )`,
             }}>
             {inRanges.map((range, i) => (
               <span

@@ -268,11 +268,12 @@ var DayCell = function (_Component) {
             leftColor = (0, _getDay2.default)(inRanges[0].startDate) === 0 ? 'transparent' : inRanges[1].color;
           }
           if ((0, _isSameDay2.default)(inRanges[0].endDate, inRanges[1].endDate)) {
+            console.log(1);
             rightColor = 'transparent';
           } else if ((0, _isBefore2.default)(inRanges[0].endDate, inRanges[1].endDate)) {
-            rightColor = (0, _getDay2.default)(inRanges[0].endDate) === 6 ? 'transparent' : inRanges[1].color;
+            rightColor = (0, _getDay2.default)(inRanges[0].endDate) === 6 ? console.log(2) && 'transparent' : inRanges[1].color;
           } else {
-            rightColor = (0, _getDay2.default)(inRanges[1].endDate) === 6 ? 'transparent' : inRanges[0].color;
+            rightColor = (0, _getDay2.default)(inRanges[1].endDate) === 6 ? console.log(3) && 'transparent' : inRanges[0].color;
           }
 
           console.log(leftColor, rightColor);
@@ -282,7 +283,8 @@ var DayCell = function (_Component) {
             {
               className: [styles.dayDoubleBookedWrapper],
               style: {
-                background: 'linear-gradient(to right, ' + leftColor + ' 0%,' + leftColor + ' 50%,' + leftColor + ' 51%,' + rightColor + ' 51%, 51%,' + rightColor + ' 51%,' + rightColor + ' 51%,' + rightColor + ' 100%)'
+                background: 'linear-gradient(to right, ' + leftColor + ' 0%,' + leftColor + ' 50%,' + leftColor + ' 51%,' + rightColor + ' 51%, 51%,' + rightColor + ' 51%,' + rightColor + ' 51%,' + rightColor + ' 100%)',
+                filter: 'progid:DXImageTransform.Microsoft.gradient( startColorstr=' + leftColor + ', endColorstr=' + leftColor + ',GradientType=1 )'
               } },
             inRanges.map(function (range, i) {
               var _classnames3;
