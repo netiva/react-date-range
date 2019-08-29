@@ -198,6 +198,9 @@ class DayCell extends Component {
         } else if (isBefore(inRanges[0].startDate, inRanges[1].startDate)) {
           leftColor = getDay(inRanges[1].startDate) === 0 ? 'transparent' : inRanges[0].color;
           rightColor = getDay(inRanges[1].startDate) === 6 ? 'transparent' : inRanges[1].color;
+        } else {
+          leftColor = getDay(inRanges[0].startDate) === 0 ? 'transparent' : inRanges[1].color;
+          rightColor = getDay(inRanges[0].startDate) === 6 ? 'transparent' : inRanges[0].color;
         }
 
         console.log(leftColor, rightColor);
