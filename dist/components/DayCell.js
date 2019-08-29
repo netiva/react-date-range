@@ -262,10 +262,8 @@ var DayCell = function (_Component) {
           var rightColor = 'transparent';
           if ((0, _isSameDay2.default)(inRanges[0].startDate, inRanges[1].startDate)) {
             leftColor = 'transparent';
-            console.log(1);
-            if ((0, _isSameDay2.default)(inRanges[0].endDate, inRanges[1].endDate) || (0, _getDay2.default)(inRanges[0].startDate === 6)) {
+            if ((0, _isSameDay2.default)(inRanges[0].endDate, inRanges[1].endDate) || (0, _getDay2.default)(inRanges[0].startDate) === 6) {
               rightColor = 'transparent';
-              console.log(2);
             } else {
               rightColor = (0, _isBefore2.default)(inRanges[0].endDate, inRanges[1].endDate) ? inRanges[1].color : inRanges[0].color;
             }
