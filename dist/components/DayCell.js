@@ -261,6 +261,7 @@ var DayCell = function (_Component) {
           var leftColor = 'transparent';
           var rightColor = 'transparent';
           var updatedRanges = inRanges.reduce(function (result, range) {
+            console.log(range);
             if ((0, _isBefore2.default)(range.endDate, range.startDate)) {
               return [].concat(_toConsumableArray(result), [[_extends({}, range, { endDate: range.startDate, startDate: range.endDate })]]);
             }

@@ -184,6 +184,7 @@ class DayCell extends Component {
         let leftColor = 'transparent';
         let rightColor = 'transparent';
         const updatedRanges = inRanges.reduce((result, range) => {
+          console.log(range);
           if (isBefore(range.endDate, range.startDate)) {
             return [...result, [{ ...range, endDate: range.startDate, startDate: range.endDate }]];
           }
