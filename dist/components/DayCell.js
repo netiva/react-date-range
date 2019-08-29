@@ -218,7 +218,7 @@ var DayCell = function (_Component) {
         }
         return result;
       }, []);
-
+      console.log(inRanges);
       var isDoubleBooked = rangesCount > 1;
 
       if (isDoubleBooked) {

@@ -152,7 +152,7 @@ class DayCell extends Component {
       }
       return result;
     }, []);
-
+    console.log(inRanges);
     const isDoubleBooked = rangesCount > 1;
 
     if (isDoubleBooked) {
