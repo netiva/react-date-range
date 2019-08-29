@@ -185,11 +185,13 @@ class DayCell extends Component {
         let rightColor = 'transparent';
         if (isSameDay(inRanges[0].startDate, inRanges[1].startDate)) {
           leftColor = 'transparent';
+          console.log(1);
           if (
             isSameDay(inRanges[0].endDate, inRanges[1].endDate) ||
             getDay(inRanges[0].startDate === 6)
           ) {
             rightColor = 'transparent';
+            console.log(2);
           } else {
             rightColor = isBefore(inRanges[0].endDate, inRanges[1].endDate)
               ? inRanges[1].color
