@@ -225,7 +225,24 @@ class DayCell extends Component {
     ));
   }
   render() {
-    const { styles } = this.props;
+    const { day, styles, ranges } = this.props;
+    const rangesCount = ranges.reduce((result, range) => {
+      let startDate = range.startDate;
+      let endDate = range.endDate;
+      if (startDate && endDate && isBefore(endDate, startDate)) {
+        [startDate, endDate] = [endDate, startDate];
+      }
+      startDate = startDate ? endOfDay(startDate) : null;
+      endDate = endDate ? startOfDay(endDate) : null;
+      const isInRange =
+        (!startDate || isAfter(day, startDate)) && (!endDate || isBefore(day, endDate));
+      const isStartEdge = !isInRange && isSameDay(day, startDate);
+      const isEndEdge = !isInRange && isSameDay(day, endDate);
+      if (isInRange || isStartEdge || isEndEdge) {
+        return result + 1;
+      }
+      return result;
+    }, 0);
     return (
       <button
         type="button"
@@ -243,7 +260,8 @@ class DayCell extends Component {
         style={{ color: this.props.color }}>
         {this.renderSelectionPlaceholders()}
         {this.renderPreviewPlaceholder()}
-        <span className={styles.dayNumber}>
+        <span
+          className={classnames(styles.dayNumber, { [styles.dayDoubleBooked]: rangesCount > 1 })}>
           <span>{format(this.props.day, 'D')}</span>
         </span>
       </button>
