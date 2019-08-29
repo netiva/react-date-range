@@ -203,8 +203,6 @@ class DayCell extends Component {
           rightColor = getDay(inRanges[0].startDate) === 6 ? 'transparent' : inRanges[0].color;
         }
 
-        console.log(leftColor, rightColor);
-
         return (
           <span
             className={[styles.dayDoubleBookedWrapper]}

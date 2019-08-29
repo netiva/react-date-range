@@ -275,8 +275,6 @@ var DayCell = function (_Component) {
             rightColor = (0, _getDay2.default)(inRanges[0].startDate) === 6 ? 'transparent' : inRanges[0].color;
           }
 
-          console.log(leftColor, rightColor);
-
           return _react2.default.createElement(
             'span',
             {
