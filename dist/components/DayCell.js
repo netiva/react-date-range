@@ -266,25 +266,21 @@ var DayCell = function (_Component) {
             }
             return [].concat(_toConsumableArray(result), [range]);
           }, []);
-          console.log(updatedRanges);
           if ((0, _isSameDay2.default)(updatedRanges[0].startDate, updatedRanges[1].startDate)) {
+            console.log(1);
             leftColor = 'transparent';
           } else if ((0, _isBefore2.default)(updatedRanges[0].startDate, updatedRanges[1].startDate)) {
-            leftColor = (0, _getDay2.default)(updatedRanges[1].startDate) === 0 ? 'transparent' : updatedRanges[0].color;
+            leftColor = (0, _getDay2.default)(updatedRanges[1].startDate) === 0 ? console.log(2) && 'transparent' : updatedRanges[0].color;
           } else {
-            leftColor = (0, _getDay2.default)(updatedRanges[0].startDate) === 0 ? 'transparent' : updatedRanges[1].color;
+            leftColor = (0, _getDay2.default)(updatedRanges[0].startDate) === 0 ? console.log(3) && 'transparent' : updatedRanges[1].color;
           }
           if ((0, _isSameDay2.default)(updatedRanges[0].endDate, updatedRanges[1].endDate)) {
-            console.log(1);
-            console.log(updatedRanges);
             rightColor = 'transparent';
           } else if ((0, _isBefore2.default)(updatedRanges[0].endDate, updatedRanges[1].endDate)) {
-            rightColor = (0, _getDay2.default)(updatedRanges[0].endDate) === 6 ? console.log(2) && 'transparent' : updatedRanges[1].color;
+            rightColor = (0, _getDay2.default)(updatedRanges[0].endDate) === 6 ? 'transparent' : updatedRanges[1].color;
           } else {
-            rightColor = (0, _getDay2.default)(updatedRanges[1].endDate) === 6 ? console.log(3) && 'transparent' : updatedRanges[0].color;
+            rightColor = (0, _getDay2.default)(updatedRanges[1].endDate) === 6 ? 'transparent' : updatedRanges[0].color;
           }
-
-          console.log(leftColor, rightColor);
 
           return _react2.default.createElement(
             'span',
