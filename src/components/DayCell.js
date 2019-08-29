@@ -191,12 +191,17 @@ class DayCell extends Component {
         }, []);
         if (isSameDay(updatedRanges[0].startDate, updatedRanges[1].startDate)) {
           leftColor = 'transparent';
+          console.log(11);
         } else if (isBefore(updatedRanges[0].startDate, updatedRanges[1].startDate)) {
           leftColor =
-            getDay(updatedRanges[1].startDate) === 0 ? 'transparent' : updatedRanges[0].color;
+            getDay(updatedRanges[1].startDate) === 0
+              ? console.log(12) && 'transparent'
+              : updatedRanges[0].color;
         } else {
           leftColor =
-            getDay(updatedRanges[0].startDate) === 0 ? 'transparent' : updatedRanges[1].color;
+            getDay(updatedRanges[0].startDate) === 0
+              ? console.log(13) && 'transparent'
+              : updatedRanges[1].color;
         }
         if (isSameDay(updatedRanges[0].endDate, updatedRanges[1].endDate)) {
           rightColor = 'transparent';
