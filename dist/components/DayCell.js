@@ -191,9 +191,7 @@ var DayCell = function (_Component) {
         var isSelected = (0, _isSameDay2.default)(this.props.day, this.props.date);
         return isSelected ? _react2.default.createElement('span', { className: styles.selected, style: { color: this.props.color } }) : null;
       }
-
       var rangesCount = 0;
-
       var inRanges = ranges.reduce(function (result, range) {
         var startDate = range.startDate;
         var endDate = range.endDate;
@@ -218,18 +216,14 @@ var DayCell = function (_Component) {
         }
         return result;
       }, []);
-      console.log(inRanges);
       var isDoubleBooked = rangesCount > 1;
-
       if (isDoubleBooked) {
         var startEdgeIndex = inRanges.findIndex(function (range) {
           return range.isStartEdge;
         });
-
         var endEdgeIndex = inRanges.findIndex(function (range) {
           return range.isEndEdge;
         });
-
         if (startEdgeIndex > -1) {
           inRanges = inRanges.map(function (range) {
             return _extends({}, range, {
@@ -241,7 +235,6 @@ var DayCell = function (_Component) {
           inRanges.push(inRanges[startEdgeIndex]);
           inRanges.splice(startEdgeIndex, 1);
         }
-
         if (endEdgeIndex > -1) {
           inRanges = inRanges.map(function (range) {
             return _extends({}, range, {
@@ -253,7 +246,6 @@ var DayCell = function (_Component) {
           inRanges.push(inRanges[endEdgeIndex]);
           inRanges.splice(endEdgeIndex, 1);
         }
-
         if (startEdgeIndex === -1 && endEdgeIndex === -1) {
           inRanges = inRanges.map(function (range) {
             return _extends({}, range, {
@@ -276,12 +268,10 @@ var DayCell = function (_Component) {
             }),
             _react2.default.createElement(
               'span',
-              {
-                className: styles.dayNumber,
-                style: { color: inRanges.length === 1 ? inRanges[0].fontColor : null } },
+              { className: styles.dayNumber },
               _react2.default.createElement(
                 'span',
-                null,
+                { style: { color: inRanges.length === 1 ? inRanges[0].fontColor : null } },
                 (0, _format2.default)(this.props.day, 'D')
               )
             )

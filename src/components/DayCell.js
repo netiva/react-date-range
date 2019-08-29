@@ -122,9 +122,7 @@ class DayCell extends Component {
         <span className={styles.selected} style={{ color: this.props.color }} />
       ) : null;
     }
-
     let rangesCount = 0;
-
     let inRanges = ranges.reduce((result, range) => {
       let startDate = range.startDate;
       let endDate = range.endDate;
@@ -152,14 +150,10 @@ class DayCell extends Component {
       }
       return result;
     }, []);
-    console.log(inRanges);
     const isDoubleBooked = rangesCount > 1;
-
     if (isDoubleBooked) {
       const startEdgeIndex = inRanges.findIndex(range => range.isStartEdge);
-
       const endEdgeIndex = inRanges.findIndex(range => range.isEndEdge);
-
       if (startEdgeIndex > -1) {
         inRanges = inRanges.map(range => ({
           ...range,
@@ -170,7 +164,6 @@ class DayCell extends Component {
         inRanges.push(inRanges[startEdgeIndex]);
         inRanges.splice(startEdgeIndex, 1);
       }
-
       if (endEdgeIndex > -1) {
         inRanges = inRanges.map(range => ({
           ...range,
@@ -181,7 +174,6 @@ class DayCell extends Component {
         inRanges.push(inRanges[endEdgeIndex]);
         inRanges.splice(endEdgeIndex, 1);
       }
-
       if (startEdgeIndex === -1 && endEdgeIndex === -1) {
         inRanges = inRanges.map(range => ({
           ...range,
@@ -203,10 +195,10 @@ class DayCell extends Component {
                 style={{ color: range.color || this.props.color }}
               />
             ))}
-            <span
-              className={styles.dayNumber}
-              style={{ color: inRanges.length === 1 ? inRanges[0].fontColor : null }}>
-              <span>{format(this.props.day, 'D')}</span>
+            <span className={styles.dayNumber}>
+              <span style={{ color: inRanges.length === 1 ? inRanges[0].fontColor : null }}>
+                {format(this.props.day, 'D')}
+              </span>
             </span>
           </span>
         );
