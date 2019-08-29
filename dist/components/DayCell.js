@@ -265,7 +265,7 @@ var DayCell = function (_Component) {
               return [].concat(_toConsumableArray(result), [_extends({}, range, { endDate: range.startDate, startDate: range.endDate })]);
             }
             return [].concat(_toConsumableArray(result), [range]);
-          });
+          }, []);
           console.log(updatedRanges);
           if ((0, _isSameDay2.default)(updatedRanges[0].startDate, updatedRanges[1].startDate)) {
             leftColor = 'transparent';

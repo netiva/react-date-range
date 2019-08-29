@@ -188,7 +188,7 @@ class DayCell extends Component {
             return [...result, { ...range, endDate: range.startDate, startDate: range.endDate }];
           }
           return [...result, range];
-        });
+        }, []);
         console.log(updatedRanges);
         if (isSameDay(updatedRanges[0].startDate, updatedRanges[1].startDate)) {
           leftColor = 'transparent';
