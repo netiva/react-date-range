@@ -261,13 +261,12 @@ var DayCell = function (_Component) {
           var leftColor = 'transparent';
           var rightColor = 'transparent';
           var updatedRanges = inRanges.reduce(function (result, range) {
-            console.log(range);
             if ((0, _isBefore2.default)(range.endDate, range.startDate)) {
               return [].concat(_toConsumableArray(result), [_extends({}, range, { endDate: range.startDate, startDate: range.endDate })]);
             }
             return [].concat(_toConsumableArray(result), [range]);
           });
-
+          console.log(updatedRanges);
           if ((0, _isSameDay2.default)(updatedRanges[0].startDate, updatedRanges[1].startDate)) {
             leftColor = 'transparent';
           } else if ((0, _isBefore2.default)(updatedRanges[0].startDate, updatedRanges[1].startDate)) {
