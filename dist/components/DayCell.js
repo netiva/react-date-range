@@ -269,10 +269,18 @@ var DayCell = function (_Component) {
             }
           } else if ((0, _isBefore2.default)(inRanges[0].startDate, inRanges[1].startDate)) {
             leftColor = (0, _getDay2.default)(inRanges[1].startDate) === 0 ? 'transparent' : inRanges[0].color;
-            rightColor = (0, _getDay2.default)(inRanges[1].startDate) === 6 ? 'transparent' : inRanges[1].color;
+            if ((0, _isBefore2.default)(inRanges[0].endDate, inRanges[1].endDate)) {
+              rightColor = (0, _getDay2.default)(inRanges[1].startDate) === 6 ? 'transparent' : inRanges[1].color;
+            } else {
+              rightColor = (0, _getDay2.default)(inRanges[1].startDate) === 6 ? 'transparent' : inRanges[0].color;
+            }
           } else {
             leftColor = (0, _getDay2.default)(inRanges[0].startDate) === 0 ? 'transparent' : inRanges[1].color;
-            rightColor = (0, _getDay2.default)(inRanges[0].startDate) === 6 ? 'transparent' : inRanges[0].color;
+            if ((0, _isBefore2.default)(inRanges[1].endDate, inRanges[0].endDate)) {
+              rightColor = (0, _getDay2.default)(inRanges[0].startDate) === 6 ? 'transparent' : inRanges[0].color;
+            } else {
+              rightColor = (0, _getDay2.default)(inRanges[0].startDate) === 6 ? 'transparent' : inRanges[1].color;
+            }
           }
 
           return _react2.default.createElement(
