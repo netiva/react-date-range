@@ -338,11 +338,10 @@ var DayCell = function (_Component) {
         _react2.default.createElement(
           'span',
           {
-            className: (0, _classnames7.default)(styles.dayNumber, _defineProperty({}, styles.dayDoubleBooked, rangesCount > 1)),
-            style: { color: fontColor } },
+            className: (0, _classnames7.default)(styles.dayNumber, _defineProperty({}, styles.dayDoubleBooked, rangesCount > 1)) },
           _react2.default.createElement(
             'span',
-            null,
+            { style: { color: fontColor } },
             (0, _format2.default)(this.props.day, 'D')
           )
         )

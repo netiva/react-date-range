@@ -255,9 +255,8 @@ class DayCell extends Component {
         {this.renderSelectionPlaceholders()}
         {this.renderPreviewPlaceholder()}
         <span
-          className={classnames(styles.dayNumber, { [styles.dayDoubleBooked]: rangesCount > 1 })}
-          style={{ color: fontColor }}>
-          <span>{format(this.props.day, 'D')}</span>
+          className={classnames(styles.dayNumber, { [styles.dayDoubleBooked]: rangesCount > 1 })}>
+          <span style={{ color: fontColor }}>{format(this.props.day, 'D')}</span>
         </span>
       </button>
     );
