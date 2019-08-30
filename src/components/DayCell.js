@@ -210,10 +210,16 @@ class DayCell extends Component {
         return (
           <span
             className={[styles.dayDoubleBookedWrapper]}
-            style={{
-              background: `linear-gradient(to right, ${leftColor} 0%,${leftColor} 50%,${leftColor} 51%,${rightColor} 51%, 51%,${rightColor} 51%,${rightColor} 51%,${rightColor} 100%)`,
-              filter: `progid:DXImageTransform.Microsoft.gradient( startColorstr=${leftColor}, endColorstr=${leftColor},GradientType=1 )`,
-            }}>
+            style={
+              {
+                // background: `linear-gradient(to right, ${leftColor} 0%,${leftColor} 50%,${leftColor} 51%,${rightColor} 51%, 51%,${rightColor} 51%,${rightColor} 51%,${rightColor} 100%)`,
+                // filter: `progid:DXImageTransform.Microsoft.gradient( startColorstr=${leftColor}, endColorstr=${leftColor},GradientType=1 )`,
+              }
+            }>
+            <span style={{ display: 'flex' }}>
+              <div style={{ flexGrow: 0.5, background: leftColor }} />
+              <div style={{ flexGrow: 0.5, background: rightColor }} />
+            </span>
             {inRanges.map((range, i) => (
               <span
                 key={i}

@@ -285,9 +285,15 @@ var DayCell = function (_Component) {
             {
               className: [styles.dayDoubleBookedWrapper],
               style: {
-                background: 'linear-gradient(to right, ' + leftColor + ' 0%,' + leftColor + ' 50%,' + leftColor + ' 51%,' + rightColor + ' 51%, 51%,' + rightColor + ' 51%,' + rightColor + ' 51%,' + rightColor + ' 100%)',
-                filter: 'progid:DXImageTransform.Microsoft.gradient( startColorstr=' + leftColor + ', endColorstr=' + leftColor + ',GradientType=1 )'
+                // background: `linear-gradient(to right, ${leftColor} 0%,${leftColor} 50%,${leftColor} 51%,${rightColor} 51%, 51%,${rightColor} 51%,${rightColor} 51%,${rightColor} 100%)`,
+                // filter: `progid:DXImageTransform.Microsoft.gradient( startColorstr=${leftColor}, endColorstr=${leftColor},GradientType=1 )`,
               } },
+            _react2.default.createElement(
+              'span',
+              { style: { display: 'flex' } },
+              _react2.default.createElement('div', { style: { flexGrow: 0.5, background: leftColor } }),
+              _react2.default.createElement('div', { style: { flexGrow: 0.5, background: rightColor } })
+            ),
             inRanges.map(function (range, i) {
               var _classnames3;
 
