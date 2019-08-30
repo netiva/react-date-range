@@ -191,29 +191,22 @@ class DayCell extends Component {
         }, []);
         if (isSameDay(updatedRanges[0].startDate, updatedRanges[1].startDate)) {
           leftColor = 'transparent';
-          console.log(1);
         } else if (isBefore(updatedRanges[0].startDate, updatedRanges[1].startDate)) {
           leftColor =
             getDay(updatedRanges[1].startDate) === 0 ? 'transparent' : updatedRanges[0].color;
-          console.log(2);
         } else {
           leftColor =
             getDay(updatedRanges[0].startDate) === 0 ? 'transparent' : updatedRanges[1].color;
-          console.log(3);
         }
         if (isSameDay(updatedRanges[0].endDate, updatedRanges[1].endDate)) {
           rightColor = 'transparent';
-          console.log(4);
         } else if (isBefore(updatedRanges[0].endDate, updatedRanges[1].endDate)) {
           rightColor =
             getDay(updatedRanges[0].endDate) === 6 ? 'transparent' : updatedRanges[1].color;
-          console.log(5);
         } else {
           rightColor =
             getDay(updatedRanges[1].endDate) === 6 ? 'transparent' : updatedRanges[0].color;
-          console.log(6);
         }
-        console.log(leftColor, rightColor);
         return (
           <span
             className={[styles.dayDoubleBookedWrapper]}

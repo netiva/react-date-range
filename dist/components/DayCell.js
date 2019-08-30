@@ -268,25 +268,18 @@ var DayCell = function (_Component) {
           }, []);
           if ((0, _isSameDay2.default)(updatedRanges[0].startDate, updatedRanges[1].startDate)) {
             leftColor = 'transparent';
-            console.log(1);
           } else if ((0, _isBefore2.default)(updatedRanges[0].startDate, updatedRanges[1].startDate)) {
             leftColor = (0, _getDay2.default)(updatedRanges[1].startDate) === 0 ? 'transparent' : updatedRanges[0].color;
-            console.log(2);
           } else {
             leftColor = (0, _getDay2.default)(updatedRanges[0].startDate) === 0 ? 'transparent' : updatedRanges[1].color;
-            console.log(3);
           }
           if ((0, _isSameDay2.default)(updatedRanges[0].endDate, updatedRanges[1].endDate)) {
             rightColor = 'transparent';
-            console.log(4);
           } else if ((0, _isBefore2.default)(updatedRanges[0].endDate, updatedRanges[1].endDate)) {
             rightColor = (0, _getDay2.default)(updatedRanges[0].endDate) === 6 ? 'transparent' : updatedRanges[1].color;
-            console.log(5);
           } else {
             rightColor = (0, _getDay2.default)(updatedRanges[1].endDate) === 6 ? 'transparent' : updatedRanges[0].color;
-            console.log(6);
           }
-          console.log(leftColor, rightColor);
           return _react2.default.createElement(
             'span',
             {
