@@ -282,12 +282,7 @@ var DayCell = function (_Component) {
           }
           return _react2.default.createElement(
             'span',
-            {
-              className: [styles.dayDoubleBookedWrapper],
-              style: {
-                // background: `linear-gradient(to right, ${leftColor} 0%,${leftColor} 50%,${leftColor} 51%,${rightColor} 51%, 51%,${rightColor} 51%,${rightColor} 51%,${rightColor} 100%)`,
-                // filter: `progid:DXImageTransform.Microsoft.gradient( startColorstr=${leftColor}, endColorstr=${leftColor},GradientType=1 )`,
-              } },
+            { className: [styles.dayDoubleBookedWrapper] },
             _react2.default.createElement(
               'span',
               { style: { display: 'flex' } },
