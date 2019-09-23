@@ -26,7 +26,7 @@ function renderWeekdays(styles, dateOptions) {
         end: endOfWeek(now, dateOptions),
       }).map((day, i) => (
         <span className={styles.weekDay} key={i}>
-          {format(day, 'ddd', dateOptions)}
+          {format(day, 'd', dateOptions)}
         </span>
       ))}
     </div>
