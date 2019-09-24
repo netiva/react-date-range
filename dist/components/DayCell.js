@@ -280,14 +280,10 @@ var DayCell = function (_Component) {
             var previousDay = (0, _addDays2.default)(updatedRanges[1].startDate, -1);
             var isDifferentMonth = (0, _getMonth2.default)(previousDay) !== (0, _getMonth2.default)(updatedRanges[1].startDate);
 
-            console.log(previousDay, updatedRanges[1].startDate, isDifferentMonth);
-
             leftColor = (0, _getDay2.default)(updatedRanges[1].startDate) === 0 || isDifferentMonth ? 'transparent' : updatedRanges[0].color;
           } else {
             var _previousDay = (0, _addDays2.default)(updatedRanges[0].startDate, -1);
             var _isDifferentMonth = (0, _getMonth2.default)(_previousDay) !== (0, _getMonth2.default)(updatedRanges[0].startDate);
-            console.log(_previousDay, updatedRanges[0].startDate, _isDifferentMonth);
-
             leftColor = (0, _getDay2.default)(updatedRanges[0].startDate) === 0 || _isDifferentMonth ? 'transparent' : updatedRanges[1].color;
           }
           if ((0, _isSameDay2.default)(updatedRanges[0].endDate, updatedRanges[1].endDate)) {
@@ -296,14 +292,10 @@ var DayCell = function (_Component) {
             var nextDay = (0, _addDays2.default)(updatedRanges[0].endDate, 1);
             var _isDifferentMonth2 = (0, _getMonth2.default)(nextDay) !== (0, _getMonth2.default)(updatedRanges[0].endDate);
 
-            console.log(nextDay, updatedRanges[0].endDate, _isDifferentMonth2);
-
             rightColor = (0, _getDay2.default)(updatedRanges[0].endDate) === 6 || _isDifferentMonth2 ? 'transparent' : updatedRanges[1].color;
           } else {
             var _nextDay = (0, _addDays2.default)(updatedRanges[1].endDate, 1);
             var _isDifferentMonth3 = (0, _getMonth2.default)(_nextDay) !== (0, _getMonth2.default)(updatedRanges[1].endDate);
-
-            console.log(_nextDay, updatedRanges[1].endDate, _isDifferentMonth3);
 
             rightColor = (0, _getDay2.default)(updatedRanges[1].endDate) === 6 || _isDifferentMonth3 ? 'transparent' : updatedRanges[0].color;
           }
