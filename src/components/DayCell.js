@@ -2,7 +2,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { startOfDay, format, isSameDay, isAfter, isBefore, endOfDay, getDay } from 'date-fns';
+import {
+  startOfDay,
+  format,
+  isSameDay,
+  isAfter,
+  isBefore,
+  endOfDay,
+  getDay,
+  addDays,
+  getMonth,
+} from 'date-fns';
 
 class DayCell extends Component {
   constructor(props, context) {
@@ -192,20 +202,40 @@ class DayCell extends Component {
         if (isSameDay(updatedRanges[0].startDate, updatedRanges[1].startDate)) {
           leftColor = 'transparent';
         } else if (isBefore(updatedRanges[0].startDate, updatedRanges[1].startDate)) {
+          const previousDay = addDays(updatedRanges[1].startDate, -1);
+          const isDifferentMonth = getMonth(previousDay) !== getMonth(updatedRanges[1].startDate);
+
           leftColor =
-            getDay(updatedRanges[1].startDate) === 0 ? 'transparent' : updatedRanges[0].color;
+            getDay(updatedRanges[1].startDate) === 0 || isDifferentMonth
+              ? 'transparent'
+              : updatedRanges[0].color;
         } else {
+          const previousDay = addDays(updatedRanges[0].startDate, -1);
+          const isDifferentMonth = getMonth(previousDay) !== getMonth(updatedRanges[0].startDate);
+
           leftColor =
-            getDay(updatedRanges[0].startDate) === 0 ? 'transparent' : updatedRanges[1].color;
+            getDay(updatedRanges[0].startDate) === 0 || isDifferentMonth
+              ? 'transparent'
+              : updatedRanges[1].color;
         }
         if (isSameDay(updatedRanges[0].endDate, updatedRanges[1].endDate)) {
           rightColor = 'transparent';
         } else if (isBefore(updatedRanges[0].endDate, updatedRanges[1].endDate)) {
+          const nextDay = addDays(updatedRanges[0].endDate, 1);
+          const isDifferentMonth = getMonth(nextDay) !== getMonth(updatedRanges[0].endDate);
+
           rightColor =
-            getDay(updatedRanges[0].endDate) === 6 ? 'transparent' : updatedRanges[1].color;
+            getDay(updatedRanges[0].endDate) === 6 || isDifferentMonth
+              ? 'transparent'
+              : updatedRanges[1].color;
         } else {
+          const nextDay = addDays(updatedRanges[1].endDate, 1);
+          const isDifferentMonth = getMonth(nextDay) !== getMonth(updatedRanges[1].endDate);
+
           rightColor =
-            getDay(updatedRanges[1].endDate) === 6 ? 'transparent' : updatedRanges[0].color;
+            getDay(updatedRanges[1].endDate) === 6 || isDifferentMonth
+              ? 'transparent'
+              : updatedRanges[0].color;
         }
         return (
           <span className={[styles.dayDoubleBookedWrapper]}>
