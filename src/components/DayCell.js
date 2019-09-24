@@ -205,6 +205,8 @@ class DayCell extends Component {
           const previousDay = addDays(updatedRanges[1].startDate, -1);
           const isDifferentMonth = getMonth(previousDay) !== getMonth(updatedRanges[1].startDate);
 
+          console.log(previousDay, updatedRanges[1].startDate, isDifferentMonth);
+
           leftColor =
             getDay(updatedRanges[1].startDate) === 0 || isDifferentMonth
               ? 'transparent'
@@ -212,6 +214,7 @@ class DayCell extends Component {
         } else {
           const previousDay = addDays(updatedRanges[0].startDate, -1);
           const isDifferentMonth = getMonth(previousDay) !== getMonth(updatedRanges[0].startDate);
+          console.log(previousDay, updatedRanges[0].startDate, isDifferentMonth);
 
           leftColor =
             getDay(updatedRanges[0].startDate) === 0 || isDifferentMonth
@@ -224,6 +227,8 @@ class DayCell extends Component {
           const nextDay = addDays(updatedRanges[0].endDate, 1);
           const isDifferentMonth = getMonth(nextDay) !== getMonth(updatedRanges[0].endDate);
 
+          console.log(nextDay, updatedRanges[0].endDate, isDifferentMonth);
+
           rightColor =
             getDay(updatedRanges[0].endDate) === 6 || isDifferentMonth
               ? 'transparent'
@@ -231,6 +236,8 @@ class DayCell extends Component {
         } else {
           const nextDay = addDays(updatedRanges[1].endDate, 1);
           const isDifferentMonth = getMonth(nextDay) !== getMonth(updatedRanges[1].endDate);
+
+          console.log(nextDay, updatedRanges[1].endDate, isDifferentMonth);
 
           rightColor =
             getDay(updatedRanges[1].endDate) === 6 || isDifferentMonth
