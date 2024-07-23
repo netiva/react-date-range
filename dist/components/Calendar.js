@@ -32,6 +32,8 @@ var _reactList = require('react-list');
 
 var _reactList2 = _interopRequireDefault(_reactList);
 
+var _shallowEqual = require('shallow-equal');
+
 var _max = require('date-fns/max');
 
 var _max2 = _interopRequireDefault(_max);
@@ -139,6 +141,7 @@ var Calendar = function (_PureComponent) {
     _this.estimateMonthSize = _this.estimateMonthSize.bind(_this);
     _this.handleScroll = _this.handleScroll.bind(_this);
     _this.dateOptions = { locale: props.locale };
+    if (props.weekStartsOn !== undefined) _this.dateOptions.weekStartsOn = props.weekStartsOn;
     _this.styles = (0, _utils.generateStyles)([_styles2.default, props.classNames]);
     _this.listSizeCache = {};
     _this.state = {
@@ -231,6 +234,30 @@ var Calendar = function (_PureComponent) {
         setTimeout(function () {
           return _this2.focusToDate(_this2.state.focusedDate);
         }, 1);
+      }
+    }
+  }, {
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate(prevProps) {
+      var propMapper = {
+        dateRange: 'ranges',
+        date: 'date'
+      };
+      var targetProp = propMapper[this.props.displayMode];
+      if (this.props[targetProp] !== prevProps[targetProp]) {
+        this.updateShownDate(this.props);
+      }
+
+      if (prevProps.locale !== this.props.locale || prevProps.weekStartsOn !== this.props.weekStartsOn) {
+        this.dateOptions = { locale: this.props.locale };
+        if (this.props.weekStartsOn !== undefined) this.dateOptions.weekStartsOn = this.props.weekStartsOn;
+        this.setState({
+          monthNames: this.getMonthNames()
+        });
+      }
+
+      if (!(0, _shallowEqual.shallowEqualObjects)(prevProps.scroll, this.props.scroll)) {
+        this.setState({ scrollArea: this.calcScrollArea(this.props) });
       }
     }
   }, {
@@ -727,6 +754,7 @@ Calendar.propTypes = {
     endDate: _propTypes2.default.object,
     color: _propTypes2.default.string
   }),
+  weekStartsOn: _propTypes2.default.number,
   dateDisplayFormat: _propTypes2.default.string,
   monthDisplayFormat: _propTypes2.default.string,
   focusedRange: _propTypes2.default.arrayOf(_propTypes2.default.number),

@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "NODE_ENV=development & webpack-dev-server --hot --inline",
     "clear": "rm -rf dist/* & rm -rf demo/dist/*",
-    "build": "NODE_ENV=production & yarn build-library & yarn build-demo",
+    "build": "NODE_ENV=production & npm run build-library & npm run build-demo",
     "build-demo": "webpack -p",
     "build-library": "babel ./src --out-dir ./dist --ignore test.js & postcss 'src/styles.scss' -d dist --ext css & postcss 'src/theme/*.scss' -d 'dist/theme' --ext css",
     "lint": "eslint 'src/**/*.js'",
@@ -37,7 +37,8 @@
     "classnames": "^2.2.1",
     "date-fns": "2.0.0-alpha.7",
     "prop-types": "^15.5.10",
-    "react-list": "^0.8.8"
+    "react-list": "^0.8.8",
+    "shallow-equal": "^1.2.1"
   },
   "peerDependencies": {
     "react": "^0.14 || ^15.0.0-rc || >=15.0"

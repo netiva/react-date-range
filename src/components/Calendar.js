@@ -5,6 +5,7 @@ import Month from './Month.js';
 import { calcFocusDate, generateStyles, getMonthDisplayRange } from '../utils';
 import classnames from 'classnames';
 import ReactList from 'react-list';
+import { shallowEqualObjects } from 'shallow-equal';
 import {
   addMonths,
   format,
@@ -43,6 +44,7 @@ class Calendar extends PureComponent {
     this.estimateMonthSize = this.estimateMonthSize.bind(this);
     this.handleScroll = this.handleScroll.bind(this);
     this.dateOptions = { locale: props.locale };
+    if (props.weekStartsOn !== undefined) this.dateOptions.weekStartsOn = props.weekStartsOn;
     this.styles = generateStyles([coreStyles, props.classNames]);
     this.listSizeCache = {};
     this.state = {
@@ -114,6 +116,32 @@ class Calendar extends PureComponent {
     if (this.props.scroll.enabled) {
       // prevent react-list's initial render focus problem
       setTimeout(() => this.focusToDate(this.state.focusedDate), 1);
+    }
+  }
+  componentDidUpdate(prevProps) {
+    const propMapper = {
+      dateRange: 'ranges',
+      date: 'date',
+    };
+    const targetProp = propMapper[this.props.displayMode];
+    if (this.props[targetProp] !== prevProps[targetProp]) {
+      this.updateShownDate(this.props);
+    }
+
+    if (
+      prevProps.locale !== this.props.locale ||
+      prevProps.weekStartsOn !== this.props.weekStartsOn
+    ) {
+      this.dateOptions = { locale: this.props.locale };
+      if (this.props.weekStartsOn !== undefined)
+        this.dateOptions.weekStartsOn = this.props.weekStartsOn;
+      this.setState({
+        monthNames: this.getMonthNames(),
+      });
+    }
+
+    if (!shallowEqualObjects(prevProps.scroll, this.props.scroll)) {
+      this.setState({ scrollArea: this.calcScrollArea(this.props) });
     }
   }
   UNSAFE_componentWillReceiveProps(nextProps) {
@@ -513,6 +541,7 @@ Calendar.propTypes = {
     endDate: PropTypes.object,
     color: PropTypes.string,
   }),
+  weekStartsOn: PropTypes.number,
   dateDisplayFormat: PropTypes.string,
   monthDisplayFormat: PropTypes.string,
   focusedRange: PropTypes.arrayOf(PropTypes.number),
